@@ -14,8 +14,18 @@ datasource db {
 }
 
 model Posts {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   content     String
-  publishedAt DateTime @default(now())
+  publishedAt DateTime  @default(now())
+  comments    Comment[]
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  username    String
+  comment     String
+  commentedAt DateTime @default(now())
+  postId      Int
+  post        Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
 }

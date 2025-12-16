@@ -62,10 +62,50 @@ async function deletePost(req,res) {
                 id : +req.params.blogId
             }
         })
-        res.send('deleted')
+        res.send('deleted post')
     }catch(error){
         console.error(error)
     }
 }
 
-export{createBlogPost, allBlogPosts, blogById, updatePost, deletePost}
+async function addComment(req,res){
+    try{
+        await prisma.comment.create({
+            data:{
+                username : req.body.username,
+                comment: req.body.comment,
+                postId: +req.params.blogId
+            }
+        })
+        res.json('comment added')
+    }catch(error){
+        console.error(error)
+    }
+}
+
+async function allComments(req,res) {
+    try{
+        const comments = await prisma.comment.findMany({
+            where:{
+                postId : +req.params.blogId
+            }
+        })
+        res.json(comments)
+    }catch(error){
+        console.error(error)
+    }
+}
+
+async function deleteComment(req,res) {
+    try{
+        await prisma.comment.delete({
+            where:{
+                id : +req.params.commentId
+            }
+        })
+        res.send('deleted comment')
+    }catch(error){
+        console.error(error)
+    } 
+}
+export{createBlogPost, allBlogPosts, blogById, updatePost, deletePost, allComments, addComment,deleteComment}

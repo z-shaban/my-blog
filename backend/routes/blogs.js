@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { allBlogPosts, blogById, createBlogPost, deletePost, updatePost } from '../controllers/blogs.js';
+import { addComment, allBlogPosts, allComments, blogById, createBlogPost, deleteComment, deletePost, updatePost } from '../controllers/blogs.js';
 
 
 const blogs = Router();
@@ -13,6 +13,13 @@ blogs.get('/:blogId', blogById)
 blogs.put('/:blogId',updatePost)
 
 blogs.delete('/:blogId',deletePost)
+
+blogs.get('/:blogId/comments', allComments)
+
+blogs.post('/:blogId/comments', addComment)
+
+blogs.delete('/:blogId/comments/:commentId', deleteComment)
+
 
 
 export {blogs}
