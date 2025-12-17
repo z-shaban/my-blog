@@ -1,6 +1,7 @@
 import express from 'express'
 import { homepage } from './routes/homepage.js'
 import { blogs } from './routes/blogs.js'
+import { signup } from './routes/signup.js'
 
 
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use('/', homepage)
 app.use('/blogs', blogs)
+app.use('/signup', signup)
 
 
 app.listen(PORT,(error)=>{
