@@ -1,4 +1,6 @@
 import { prisma } from '../lib/prisma.js';
+import  jwt from 'jsonwebtoken';
+import "dotenv/config"
 
 async function createBlogPost(req,res){
     try{
@@ -9,7 +11,7 @@ async function createBlogPost(req,res){
             }
            
         })
-         res.send('added')
+         res.json('added')
     }catch(error){
         console.error(error)
     }
@@ -49,7 +51,7 @@ async function updatePost(req,res) {
                 content : req.body.content
             }
         })
-        res.send('edited')
+        res.json('edited')
     }catch(error){
         console.error(error)
     }
@@ -72,7 +74,7 @@ async function addComment(req,res){
     try{
         await prisma.comment.create({
             data:{
-                username : req.body.username,
+                userId : +req.body.userId,
                 comment: req.body.comment,
                 postId: +req.params.blogId
             }
