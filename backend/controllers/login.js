@@ -22,7 +22,9 @@ async function userLogin(req,res){
     
     
    jwt.sign(
-    {sub: user.id},
+    {sub: user.id,
+    role: user.role
+    },
     process.env.JWT_SECRET,
     {expiresIn:"7d"},
    (error,token)=>{

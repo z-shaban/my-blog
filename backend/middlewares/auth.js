@@ -21,4 +21,12 @@ function authenticate(req,res, next){
     }
 }
 
- export {authenticate}
+function authorize(req,res,next){
+    if(req.user.role === "ADMIN"){
+      next()
+    }else{
+        res.status(403).json({error: 'Admin access required'})
+    }
+}
+
+ export {authenticate, authorize}
