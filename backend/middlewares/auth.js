@@ -21,7 +21,7 @@ function authenticate(req,res, next){
     }
 }
 
-function authorize(req,res,next){
+function isAdmin(req,res,next){
     if(req.user.role === "ADMIN"){
       next()
     }else{
@@ -29,4 +29,6 @@ function authorize(req,res,next){
     }
 }
 
- export {authenticate, authorize}
+
+
+ export {authenticate, isAdmin}

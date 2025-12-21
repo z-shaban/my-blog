@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import { addComment, allBlogPosts, allComments, blogById, createBlogPost, deleteComment, deletePost, updatePost } from '../controllers/blogs.js';
-import { authenticate, authorize } from '../middlewares/auth.js';
+import { authenticate, isAdmin } from '../middlewares/auth.js';
 
 
 const blogs = Router();
 
-blogs.post('/', authenticate,authorize,createBlogPost)
+blogs.post('/', authenticate,isAdmin,createBlogPost)
 
 blogs.get('/', allBlogPosts)
 
 blogs.get('/:blogId', blogById)
 
-blogs.put('/:blogId',authenticate, authorize,updatePost)
+blogs.put('/:blogId',authenticate, isAdmin ,updatePost)
 
-blogs.delete('/:blogId',authenticate,authorize,deletePost)
+blogs.delete('/:blogId',authenticate,isAdmin,deletePost)
 
 blogs.get('/:blogId/comments', allComments)
 
