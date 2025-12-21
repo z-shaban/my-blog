@@ -1,74 +1,122 @@
-# my-blog
-My Blog Backend
-A RESTful API for managing blog post and comments
+# My Blog Backend
+
+A RESTful API for managing blog posts and comments
+
+---
 
 ## Features
-CRUD operations for blog post
-CRD operations for comments
-user authentication with jwt
-Role based access control
-secure hashing with bcrypt
+
+-  CRUD operations for blog posts
+-  CRD operations for comments
+-  User authentication with JWT
+-  Role-based access control
+- Secure password hashing with bcrypt
+
+---
 
 ## Tech Stack
-Runtime - nodejs
-Framework - express
-Database - PostgreSQL
-ORM - Prisma
-Authentication- JWT(jsonwebtoken)
-Password hashing - bcrypt
-Environment Variables -dotenv
+
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **Authentication:** JWT (jsonwebtoken)
+- **Password Hashing:** bcrypt
+- **Environment Variables:** dotenv
+
+---
 
 ## Getting Started
 
 ### Prerequisites
-Node.js
-PostgreSQL database
-npm
+
+- Node.js
+- PostgreSQL database
+- npm
 
 ### Installation
 
-1. Clone the repository
+1. **Clone the repository**
+```bash
+   git clone <your-repo-url>
+   cd my-blog
+```
 
-2. Install dependencies
+2. **Install dependencies**
+```bash
+   npm install
+```
 
-3. Set up environment variables
-DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
-JWT_SECRET="your-secret-key"
-PORT=3000
+3. **Set up environment variables**
+   
+   Create a `.env` file in the root directory:
+```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+   JWT_SECRET="your-secret-key"
+   PORT=3000
+```
 
-4. Run database migrations
+4. **Run database migrations**
+```bash
+   npx prisma migrate dev
+```
 
-5. Start the server
+5. **Start the server**
+```bash
+   npm start
+```
+
+The API will be running at `http://localhost:3000`
+
+---
 
 ## Authentication
-Authentication is by JWT
+
+This API uses JWT (JSON Web Tokens) for authentication.
+
 ### User Roles
 
 - **USER** (default): Can create and delete own comments, view all posts
 - **ADMIN**: Full access to create, update, delete posts and all comments
 
+---
+
 ## API Endpoints
-## Blog Posts
-# Get all Post
-GET /blogs
-# Get one Post
-GET /blogs/:blogId
-# Create blog Post
-POST/blogs (Admin only)
-# Update Post 
-PUT/blogs/:blogId (admin only)
-# Delete Post
-DELETE/blogs/:blogId(admin only)
 
-## Comments
-# Get comments
-GET/blogs/:blogId/comments
+### Base URL
+```
+http://localhost:3000
+```
 
-# add comments
-POST/blogs/:blogId/comments(user)
+### Blog Posts
 
-# delete comment
-DELETE/blogs/:blogId/comments/:commentId(admin/user)
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/blogs` | Public | Get all posts |
+| GET | `/blogs/:blogId` | Public | Get single post |
+| POST | `/blogs` | Admin only | Create blog post |
+| PUT | `/blogs/:blogId` | Admin only | Update post |
+| DELETE | `/blogs/:blogId` | Admin only | Delete post |
 
-## Error Handling 
-uses standard error handling
+### Comments
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/blogs/:blogId/comments` | Public | Get all comments for a post |
+| POST | `/blogs/:blogId/comments` | Authenticated users | Add comment |
+| DELETE | `/blogs/:blogId/comments/:commentId` | Admin or Comment owner | Delete comment |
+
+---
+
+## Error Handling
+
+The API uses standard HTTP status codes:
+
+- `200` - Success
+- `401` - Unauthorized (not logged in)
+- `403` - Forbidden (insufficient permissions)
+- `404` - Not found
+- `500` - Server error
+
+---
+
