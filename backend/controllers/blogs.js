@@ -39,6 +39,7 @@ async function blogById(req,res){
          if(!post){
             return res.status(404).json({error: 'Post not found'});
         }
+        
         res.json(post)
     }catch(error){
         console.error(error)
