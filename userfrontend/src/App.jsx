@@ -1,20 +1,24 @@
 import { Link } from "react-router";
 import { Outlet } from "react-router";
 
+
 function App() {
   
   return (
     <>
-      <header>
-      <Link to='home'>MY BLOG</Link>
-      <Link to='posts'>BLOG POSTS</Link>
+      <div className="min-h-screen flex flex-col bg-slate-900">
+      <header className="h-[10vh] bg-slate-800 flex items-center pl-4" >
+      <Link to='home'className="text-slate-100 pr-4">MY BLOG</Link>
+      <Link to='posts' className="text-slate-100">BLOG POSTS</Link>
       </header>
-      <main>
+      <main className="flex-1 flex">
        <Outlet />
       </main>
       <footer>
-        <p>@2025</p>
+        <p className="h-[10vh] bg-slate-800 text-slate-100 flex justify-center items-center">@2025</p>
       </footer>
+      </div>
+      
     </>
   )
 }

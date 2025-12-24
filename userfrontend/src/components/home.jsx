@@ -1,5 +1,7 @@
 import { useEffect, useState} from "react"
 import { API_URL } from "../config"
+import {Link} from 'react-router'
+
 
 function Home(){
     const [posts,setPosts] = useState(null)
@@ -15,7 +17,6 @@ function Home(){
                     throw new Error(data.error || 'something went wrong')
                 }
                 setPosts(data)
-                console.log(response)
                 
             }catch(error){
                setError(error)
@@ -30,19 +31,27 @@ function Home(){
    if(loading) return <p>Loading....</p>
    if(error) return <p>{error.message} </p>
     return(
-        posts && (
-             <>
-        <h1>Welcome to my corner!!!</h1>
+        <> 
+        <div className="text-slate-100 flex flex-1 flex-col items-center justify-center ">
+             <h1 className="mb-8">WELCOME TO MY CORNER!!!</h1>
+         
+        {posts && (
         <div>
-            <ul>
+            
                 {posts.map((post)=>{
-                    return <li key={post.id}>{post.title} </li>
+                    return <div key={post.id} className="border border-slate-700 w-[80vw] p-4 mb-4">
+                       <p>{post.title} </p> 
+                       <p>{new Date(post.publishedAt).toLocaleDateString()} </p>
+                        </div>
                 })}
-            </ul>
+            
         </div>
-
+        )} 
+       <button className="bg-slate-600 p-2 rounded-md hover:bg-slate-100"><Link to='posts' className="text-slate-100 hover:text-slate-600">VIEW ALL BLOG POSTS</Link></button> 
+        </div>
+       
         </>
-        )
+       
        
     )
 }
