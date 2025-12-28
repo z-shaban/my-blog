@@ -7,7 +7,6 @@ const routes = [
         element: <App/>,
         children : [
          {index: true, element: <Home/>},
-         {path:'home', element:<Home/>},
          {path:'posts', element:<Posts/>}
         ]
     }

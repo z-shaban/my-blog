@@ -1,6 +1,7 @@
 import { useEffect, useState} from "react"
 import { API_URL } from "../config"
 import {Link} from 'react-router'
+import {Outlet} from 'react-router'
 
 
 function Home(){
@@ -39,7 +40,7 @@ function Home(){
         <div>
             
                 {posts.map((post)=>{
-                    return <div key={post.id} className="border border-slate-700 w-[80vw] p-4 mb-4">
+                    return <div key={post.id} className="border border-slate-700 w-[80vw] p-4 mb-4 bg-slate-800">
                        <p>{post.title} </p> 
                        <p>{new Date(post.publishedAt).toLocaleDateString()} </p>
                         </div>
@@ -47,7 +48,7 @@ function Home(){
             
         </div>
         )} 
-       <button className="bg-slate-600 p-2 rounded-md hover:bg-slate-100"><Link to='posts' className="text-slate-100 hover:text-slate-600">VIEW ALL BLOG POSTS</Link></button> 
+       <button className="bg-slate-600 p-2 rounded-md hover:bg-slate-100"><Link to='/posts' className="text-slate-100 hover:text-slate-600">VIEW ALL BLOG POSTS</Link></button>
         </div>
        
         </>
