@@ -9,7 +9,7 @@ const routes = [
         children : [
          {index: true, element: <Home/>},
          {path:'blogs',element:<Blogs/>},
-         {path:'blogs/:id', element: <BlogById/>}
+         {path:'blogs/:blogId', element: <BlogById/>}
         ]
     }
 ]

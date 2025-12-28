@@ -10,7 +10,7 @@ function Blogs(){
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        async function homePage() {
+        async function blogs() {
             try{
                 const response = await fetch(`${API_URL}/blogs`)
                 const data = await response.json()
@@ -26,7 +26,7 @@ function Blogs(){
                 setLoading(false)
             }
         }
-        homePage()
+        blogs()
     },[])
 
    if(loading) return <p>Loading....</p>
@@ -41,8 +41,11 @@ function Blogs(){
             
                 {blogs.map((blog)=>{
                     return <div key={blog.id} className="border border-slate-700 w-[80vw] p-4 mb-4 bg-slate-800">
-                       <p>{blog.title} </p> 
-                       <p>{new Date(blog.publishedAt).toLocaleDateString()} </p>
+                       <Link to={`/blogs/${blog.id}`}>
+                        <p>{blog.title} </p> 
+                         <p>{new Date(blog.publishedAt).toLocaleDateString()} </p>
+                       </Link>
+                      
                         </div>
                 })}
             
