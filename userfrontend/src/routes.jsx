@@ -1,13 +1,15 @@
 import App from "./App"
 import { Home } from "./components/home"
-import { Posts } from "./components/posts"
+import { BlogById } from "./components/blogById"
+import { Blogs } from "./components/blogs"
 const routes = [
     {
         path: '/',
         element: <App/>,
         children : [
          {index: true, element: <Home/>},
-         {path:'posts', element:<Posts/>}
+         {path:'blogs',element:<Blogs/>},
+         {path:'blogs/:id', element: <BlogById/>}
         ]
     }
 ]

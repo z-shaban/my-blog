@@ -1,7 +1,7 @@
 import { useEffect, useState} from "react"
 import { API_URL } from "../config"
 import {Link} from 'react-router'
-import {Outlet} from 'react-router'
+
 
 
 function Home(){
@@ -48,7 +48,7 @@ function Home(){
             
         </div>
         )} 
-       <button className="bg-slate-600 p-2 rounded-md hover:bg-slate-100"><Link to='/posts' className="text-slate-100 hover:text-slate-600">VIEW ALL BLOG POSTS</Link></button>
+       <button className="bg-slate-600 p-2 rounded-md hover:bg-slate-100"><Link to='/blogs' className="text-slate-100 hover:text-slate-600">VIEW ALL BLOG POSTS</Link></button>
         </div>
        
         </>

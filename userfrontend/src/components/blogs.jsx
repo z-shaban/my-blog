@@ -4,8 +4,8 @@ import {Link} from 'react-router'
 
 
 
-function Posts(){
-    const [posts,setPosts] = useState(null)
+function Blogs(){
+    const [blogs,setBlogs] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
 
@@ -17,7 +17,7 @@ function Posts(){
                 if(!response.ok){ 
                     throw new Error(data.error || 'something went wrong')
                 }
-                setPosts(data)
+                setBlogs(data)
                 
             }catch(error){
                setError(error)
@@ -36,13 +36,13 @@ function Posts(){
         <div className="text-slate-100 flex flex-1 flex-col items-center justify-center ">
              <h1 className="mt-8 mb-8">ALL POSTS</h1>
          
-        {posts && (
+        {blogs && (
         <div>
             
-                {posts.map((post)=>{
-                    return <div key={post.id} className="border border-slate-700 w-[80vw] p-4 mb-4 bg-slate-800">
-                       <p>{post.title} </p> 
-                       <p>{new Date(post.publishedAt).toLocaleDateString()} </p>
+                {blogs.map((blog)=>{
+                    return <div key={blog.id} className="border border-slate-700 w-[80vw] p-4 mb-4 bg-slate-800">
+                       <p>{blog.title} </p> 
+                       <p>{new Date(blog.publishedAt).toLocaleDateString()} </p>
                         </div>
                 })}
             
@@ -61,4 +61,4 @@ function Posts(){
 
 
 
-export {Posts}
+export {Blogs}
